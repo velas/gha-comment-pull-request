@@ -68,7 +68,6 @@ async function run() {
         body: newBody
       });
       console.log(newBody)
-      console.log("Updated pull request description succesfully");
       core.info("Updated pull request description succesfully");
     }
 
