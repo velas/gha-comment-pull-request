@@ -50,6 +50,7 @@ async function run() {
       text.replace(/(<!-- Replace -->)(.*)(<!-- Replace -->)/s, placeholder);
 
     if (descriptionMessage) {
+      core.info(`Description message: ${descriptionMessage}`);
       const descriptionWithPlaceholder = placeholderWrap(descriptionMessage)
       const currentPullRequest = await octokit.pulls.get({
         owner,
@@ -68,6 +69,7 @@ async function run() {
       });
       console.log(newBody)
       console.log("Updated pull request description succesfully");
+      core.info("Updated pull request description succesfully");
     }
 
     if (commentMessage) {
