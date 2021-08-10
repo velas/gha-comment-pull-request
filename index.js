@@ -58,7 +58,7 @@ async function run() {
         pull_number,
       });
       const newBody = replacePlaceholder(
-        currentPullRequest.data.body,
+        currentPullRequest.data.body || '',
         ''
       ).concat(`\n${descriptionWithPlaceholder}`)
       await octokit.pulls.update({
