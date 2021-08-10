@@ -1,12 +1,6 @@
-<img src="https://beakyn.com/assets/beakyn-logo-v2-color.png" alt="Beakyn" height="40" />
-
 # Comment Pull Request
 
 Action to add comments and edit description in pull requests
-
-## Pre-requisites
-
-Create a workflow .yml file in your .github/workflows directory. An example workflow is available below. For more information, reference the GitHub Help Documentation for Creating a workflow file.
 
 ## Inputs
 
@@ -21,17 +15,11 @@ Create a workflow .yml file in your .github/workflows directory. An example work
 ## Example
 
 ```yaml
-- name: Comment deploy URL to pull request
-  uses: Beakyn/gha-comment-pull-request@v1.0.1
+- name: add PR description
+  uses: velas/pr-description@master
   env:
-    GITHUB_TOKEN: ${{ github.token }}
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
-    description-message: |
-      ----
-      ### Live Preview
-      :rocket: Released to https://${{steps.environment.outputs.deployUrl}}
-    comment-message: |
-      ### Live Preview
-      :rocket: Released to https://${{steps.environment.outputs.deployUrl}}
+    description-message: ${{ steps.jira-issues-summaries.outputs.summary }}
     delete-previous-comment: true
 ```
